@@ -4,32 +4,26 @@ Introducción a TidalCycles de Lina Bautista
 
 Lenguaje para hacer música con live coding escrito por Alex Mclean, gracias él y a su infinita paciencia y también a toda la comunidad de toplap.org, especialmente toplap Barcelona.
 
-En  tidalcycles.org tienes toda la información para instalar tidal, miles de tutoriales e información infinita, 
+En  [tidalcycles.org ](http://tidalcycles.org  "tidalcycles.org ")tienes toda la información para instalar tidal, miles de tutoriales e información infinita, 
 en club.tidalcycles.org tienes un foro donde buscar mas info y resolver dudas de todo tipo. 
 
 Instalar tidal puede ser un proceso fácil o tardar varios días, por eso utilizaremos una versión mini que qorre en la web, creada en la universidad McMaster en canada: 
 
 
-https://estuary.mcmaster.ca/
+[https://estuary.mcmaster.ca/](https://estuary.mcmaster.ca/ "https://estuary.mcmaster.ca/")
 
 De momento vamos a SOLO MODE, dcimos que utilizaremos MiniTidal 
 
 
+# "
 
-Ejemplo sencillo para comenzar
-
-s
+Un jemplo sencillo para comenzar:
 
 s "bd"
 
-
-para evaluar presiona: shift + enter o el triángulo
-
-
+para evaluar presiona: s**hift + enter** o el triángulo
 
 Todos los samples en un patrón son tocados en un ciclo. Mira cómo se distribuyen:
-
-
 
 s "bd sn hh bd"
 s "bd sn hh cp arpy drum"
@@ -44,7 +38,7 @@ vamos a buscarlos:
 
 https://github.com/tidalcycles/Dirt-Samples
 
-: 
+# : 
 
 Cambia al tercer sonido de la carpeta
 s "birds:3"
@@ -52,11 +46,11 @@ s "birds:3"
 Para silenciar:
 silence o -- comentar
 
-~ 
+# ~ 
 s "~ sn:3"  --la tilde crea un silencio.
 
 
-[]
+# [ ]
 
 -- Patrones mas complejos: varios sonidos dentro de un paso de un ciclo:
 s "bd casio chink [can can can]"
@@ -64,25 +58,24 @@ s "bd casio chink [can can can]"
 --Los paréntesis cuadrados agrupan.
 s "[bd bd] bd [sn sn sn] sn sn"
 
-,
-
 --Poliritmia, dos patrones a la vez en el mismo ciclo
 s "[can can can, casio casio]"
-
 
 --Cuantas queramos
 s "[hh, sn cp sn, arpy:4 arpy:2, ~ cp, ~ ~ casio]"
 
---repetición
-s "bd*2"
-s "[clak chin]*2 bd [circus bd:2]/4"
-s "[arpy:0 arpy:1 arpy:2 arpy:3]/2"
+# *
+-- si usamos el mismo sonido podemos abreviar con:
+`s "bd*2"`
+`s "[clak chin]*2 bd [circus bd:2]/4"`
+`s "[arpy:0 arpy:1 arpy:2 arpy:3]/2"`
 
 
-<>
+# <>
 
--- Un paso por ciclo 
-s "bd <arpy:1 arpy:2 arpy:3>"
+Un paso por ciclo 
+
+`s "bd <arpy:1 arpy:2 arpy:3>"`
 
 
 
