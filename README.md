@@ -12,7 +12,7 @@ Instalar tidal puede ser un proceso fácil o tardar varios días, por eso utiliz
 
 [https://estuary.mcmaster.ca/](https://estuary.mcmaster.ca/ "https://estuary.mcmaster.ca/")
 
-De momento vamos a SOLO MODE, dcimos que utilizaremos MiniTidal 
+De momento vamos a SOLO MODE, decimos que utilizaremos MiniTidal 
 
 
 # "
