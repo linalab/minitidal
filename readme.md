@@ -1,6 +1,8 @@
 # minitidal
 
-Introducción a TidalCycles de Lina Bautista
+Introducción a TidalCycles de Lina Bautista 
+
+[Aquí ](https://www.canva.com/design/DAEB86AOsoo/0P-NQoAKiilMHHv2iFK05Q/view?utm_content=DAEB86AOsoo&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink "Aquí ")puedes ver la presentación acerca de live coding,
 
 Lenguaje para hacer música con live coding escrito por Alex Mclean, gracias él y a su infinita paciencia y también a toda la comunidad de toplap.org, Alexandra Cárdenas y especialmente a toplap Barcelona.
 
