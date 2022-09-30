@@ -19,15 +19,17 @@ De momento vamos a SOLO MODE, dcimos que utilizaremos MiniTidal
 
 Un jemplo sencillo para comenzar:
 
-s "bd"
+`s "bd"`
 
-para evaluar presiona: s**hift + enter** o el triángulo
+para evaluar presiona: **shift + enter** o el triángulo
 
 Todos los samples en un patrón son tocados en un ciclo. Mira cómo se distribuyen:
 
-s "bd sn hh bd"
-s "bd sn hh cp arpy drum"
-s "bd sn hh cp arpy drum bd arpy bass2 feel future"
+`s "bd sn hh bd"`
+
+`s "bd sn hh cp arpy drum"`
+
+`s "bd sn hh cp arpy drum bd arpy bass2 feel future"`
 
 Todo lo que está dentro de comillas define un patrón dentro de un ciclo
 s "bd sd bd sn"
@@ -41,33 +43,36 @@ https://github.com/tidalcycles/Dirt-Samples
 # : 
 
 Cambia al tercer sonido de la carpeta
-s "birds:3"
+`s "birds:3"`
 
-Para silenciar:
-silence o -- comentar
+# ~
+Para silenciar:`silence`
+o comentar `--` 
 
-# ~ 
-s "~ sn:3"  --la tilde crea un silencio.
+`s "~ sn:3"`  
+la tilde `~`  crea un silencio.
 
 
 # [ ]
 
 -- Patrones mas complejos: varios sonidos dentro de un paso de un ciclo:
-s "bd casio chink [can can can]"
+`s "bd casio chink [can can can]"`
 
 --Los paréntesis cuadrados agrupan.
-s "[bd bd] bd [sn sn sn] sn sn"
+`s "[bd bd] bd [sn sn sn] sn sn"`
 
 --Poliritmia, dos patrones a la vez en el mismo ciclo
-s "[can can can, casio casio]"
-
+`s "[can can can, casio casio]"
+`
 --Cuantas queramos
-s "[hh, sn cp sn, arpy:4 arpy:2, ~ cp, ~ ~ casio]"
+`s "[hh, sn cp sn, arpy:4 arpy:2, ~ cp, ~ ~ casio]"`
 
 # *
--- si usamos el mismo sonido podemos abreviar con:
+si usamos el mismo sonido podemos abreviar con:
 `s "bd*2"`
+
 `s "[clak chin]*2 bd [circus bd:2]/4"`
+
 `s "[arpy:0 arpy:1 arpy:2 arpy:3]/2"`
 
 
@@ -78,69 +83,81 @@ Un paso por ciclo
 `s "bd <arpy:1 arpy:2 arpy:3>"`
 
 
-
-silence
-
--- <<<<<<<<<<<<<<<<<<FUNCIONES>>>>>>>>>>>>>>>>
-
--- https://tidalcycles.org/index.php/Category:Functions
-
- -- utilizamos $ para poner funciones delante
-
--- Podemos tocar un patron en reversa con rev
-
- rev $ s "[[bd sn] cp]"
-
---Podemos acelerar y desacelerar un patrón así:
- slow 2 $ s "[[bd sn] cp]"
-
-slow 0.5 $ sound "[[bd sn] cp]"
-
-s "alphabet"
-
--- También podemos usar "fast o density" que es lo contradio de "slow"
-
-fast 2 $ s "[[bd sn] cp]"
-
--- jux!
-jux rev $ fast 2 $ s "[[bd sn] cp]"
+------------
 
 
-silence
 
--- brak redistribuye los sonidos, un ciclo normal y el siguiente lo reproduce a la mitar del ciclo y lo mueve un cuarto de ciclo...
- brak $ sound "feel feel:3"
+> Hagamos unas pruebas más antes de continuar...
+
+------------
+
+
+
+Ahora incluyamos algunas funciones...
+
+
+# rev
+
+Podemos tocar un patron en reversa con rev
+
+` rev $ s "[[bd sn] cp]"`
+
+# Slow, fast
+
+Podemos acelerar y desacelerar un patrón así:
+` slow 2 $ s "[[bd sn] cp]"`
+
+`slow 0.5 $ sound "[[bd sn] cp]"`
+
+
+
+También podemos usar "fast"... lo contradio de "slow"
+
+`fast 2 $ s "[[bd sn] cp]"`
+
+podemos hacer patrones de la velocidad también... ( y de cualquier cosa!)
+
+`fast "2 1 4" $ s "[[bd sn] cp]"`
+
+# jux
+Pone el efecto solo en un canal (muy clásico para que todo suene mejor)
+
+`jux rev $ fast 2 $ s "[[bd sn] cp]"`
+
+# brak
+brak redistribuye los sonidos, un ciclo normal y el siguiente lo reproduce a la mitar del ciclo y lo mueve un cuarto de ciclo... (otro clásico para instant party combinado con jux...)
+
+` brak $ sound "feel feel:3"`
 
 cada ciclo hace esto:
-s "<[feel feel:3][~ feel feel:3 ~]>"
+``s "<[feel feel:3][~ feel feel:3 ~]>"``
 
-silence
-
--- <<<<<<<<<<A Higher-order function>>>>>>>>>
-
--- is a function that accepts a function among its parameters.
--- https://tidalcycles.org/index.php/Category:Higher-order_functions
-
---tocar en reversa sólo algunas veces
-sometimes (rev) $ s "[[bd sn] cp]"
-
---lo podemos revertir cada 5 ciclos
-every 5 (rev) $ s "[[bd sn] cp]"
+------------
 
 
--- Combinando velocidades:
- every 4 (slow 0.5) $ every 6 (slow 2) $ s "[[bd sn] cp]"
+> Momento para hacer prueba, ida al baño y/o cigarrito :)
+
+------------
+
+# every, sometimes, ?, degradeBy
+
+Veamos ahora algunas funciones dentro de funciones
+
+tocar en reversa sólo algunas veces
+`sometimes (rev) $ s "[[bd sn] cp]"`
+
+lo podemos revertir cada 5 ciclos
+`every 5 (rev) $ s "[[bd sn] cp]"`
+
+Combinando velocidades:
+` every 4 (slow 0.5) $ every 6 (slow 2) $ s "[[bd sn] cp]"`
 
 
 
------------ Probemos algunos samples y hagamos algunos patrones---------
+Veamos mas funciones útiles
 
---Mas funciones!
-
---palíndromos
-palindrome $ s "newnotes:2 newnotes:3 newnotes:4"
-
---Podemos cortar los samples con chop:
+# chop
+Cortar los samples 
 chop 8 $ s "newnotes:2 newnotes:3 newnotes:4"
 
 
@@ -174,13 +191,15 @@ silence
 
 -------------------------------------------------------------------------------
 
-----EFECTOS!!!
---https://tidalcycles.org/index.php/All_effects_and_synths
----Podemos utilizar diferentes efectos para nuestros samples y synths:
 
-s "tok*3"
-    # gain "2" -- volumen
-    # cutoff "200" -- eq
+# EFECTOS
+https://tidalcycles.org/docs/reference/audio_effects/
+Podemos utilizar diferentes efectos para nuestros samples y synths:
+
+    s "tok*3"
+        # gain "2" -- volumen
+        # cutoff "200" -- eq
+------------
 
 
 
