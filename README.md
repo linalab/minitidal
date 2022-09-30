@@ -35,7 +35,7 @@ Todo lo que está dentro de comillas define un patrón dentro de un ciclo
 s "bd sd bd sn"
 
 
-Estamos creando <<<<<<PATRONES>>>>>>>>> con diferentes SAMPLES
+Estamos creando patrones con diferentes SAMPLES
 vamos a buscarlos: 
 
 https://github.com/tidalcycles/Dirt-Samples
@@ -273,7 +273,7 @@ https://tidalcycles.org/
 
 
 
-*Tidalcycles Es Mantenido Y Expandido Por Una Comunidad Muy Activa En Internet. No Dudeis En Contactar A La Comunidad En Caso De Dudas, Problemas O Sugerencias, Pero TambiéN Recuerda Que Hay Que Investigar Antes De Lanzarse A Preguntar, La Respuesta Puede EstáR En AlgúN Lugar.... :)*
+*tidalcycles es mantenido y expandido por una comunidad muy activa en internet. no dudeis en contactar a la comunidad en caso de dudas, problemas o sugerencias, pero también recuerda que hay que investigar antes de lanzarse a preguntar, la respuesta puede estár en algún lugar.... :)*
 
 
 
