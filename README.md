@@ -2,7 +2,7 @@
 
 Introducción a TidalCycles de Lina Bautista
 
-Lenguaje para hacer música con live coding escrito por Alex Mclean, gracias él y a su infinita paciencia y también a toda la comunidad de toplap.org, especialmente toplap Barcelona.
+Lenguaje para hacer música con live coding escrito por Alex Mclean, gracias él y a su infinita paciencia y también a toda la comunidad de toplap.org, Alexandra Cárdenas y especialmente a toplap Barcelona.
 
 En  [tidalcycles.org ](http://tidalcycles.org  "tidalcycles.org ")tienes toda la información para instalar tidal, miles de tutoriales e información infinita, 
 en club.tidalcycles.org tienes un foro donde buscar mas info y resolver dudas de todo tipo. 
@@ -154,111 +154,126 @@ Combinando velocidades:
 
 
 
-Veamos mas funciones útiles
+Veamos mas funciones útiles...
 
 # chop
 Cortar los samples 
-chop 8 $ s "newnotes:2 newnotes:3 newnotes:4"
+`chop 8 $ s "newnotes:2 newnotes:3 newnotes:4"`
+
+podemos estriar los samples,  divide los samples y mezcla los trozos:
+`        striate 8 $ s "newnotes:2 newnotes:3 newnotes:4"`
 
 
 
---podemos estriar los samples, es un granulador que divide los samples y mezcla los trozos:
-every 4 (chop 16) $ s "numbers:0 alphabet:4"
+podemos secuenciar el comportamiento de las funciones también!
+`chop "<2 4 6>" $ s "[jvbass drum:4]"`
+
+` every "<3 4 5>" (fast "2 4 3") $ s"newnotes:2 newnotes:3 newnotes:4"`
+
+`slow 2 $ chop "<3 10 20 4 2>" $ s "newnotes:2 newnotes:3 newnotes:4"`
+
+`striate "<2 10 2 4>" $ s "newnotes:2" `
 
 
-
-silence
-
-
---------------------------------------------------------------------------------
--- <<<Secuenciando funciones>>>>>
--- podemos secuenciar el comportamiento de las funciones también!
-chop "<2 4 6>" $ sound "[jvbass drum:4]"
-
-
-
- every "<3 4 5>" (fast "2 4 3") $ s"newnotes:2 newnotes:3 newnotes:4"
-
-
-slow 2 $ chop "<3 10 20 4 2>" $ s "newnotes:2 newnotes:3 newnotes:4"
-
-
-striate "<2 10 2 4>" $ s "newnotes:2" --spread
-
-silence
 
 
 
 -------------------------------------------------------------------------------
 
 
-# EFECTOS
+# # 
+
 https://tidalcycles.org/docs/reference/audio_effects/
 Podemos utilizar diferentes efectos para nuestros samples y synths:
 
-    s "tok*3"
-        # gain "2" -- volumen
-        # cutoff "200" -- eq
+`s "rave*3" # gain "0.7" # cutoff "200"`
+
+Como ves, se pueden sumar diferentes efectos, el volumen con "gain" y el "cutoff" es un filtro pasa bajos, el número cambia la frecuencia.
+
+podemos secuenciar los parámetros de los efectos también
+
+`s "rave*3" # gain "0.7 1 1.5" # cutoff "<200 4000 20000>"`
+
+Podemos panear también, suma esto al patrón anterior:
+         `# pan "0.25 0.5 0.75"`
+
+Hay otra manera de automatizar parámetros de los efectos, con funciones contínuas (sine, tri, saw):
+
+`s "rave:1*3" # gain "0.7 1 1.5" # cutoff "<200 4000 20000>" # pan sine`
+
+Sin, tri, saw, rand tienen un rango predefinido de 0 a 1, si quieres cambiarlo hay que defenirlo:
+
+`s "rave:2*3" # gain "0.7 1 1.5" # cutoff (range 50 10000 sine) # pan rand`
+
+Pero veamos algunos efectos más...
+
+Un filtro de formantes, vocal:
+`s "moog*5"  # vowel "u a i e o"`
+
+
+
+Con cut podemos cortar un sample para que solo dure un ciclo (para que samples mas largos no se superpongan)
+
+`s "moog*5"  # vowel "u a i e o" # cut 1`
+
+`s "rave:1*3" # gain "0.7 1 1.5" # cutoff (range 50 10000 sine) # pan rand # cut 1`
+
+
+> Quizá antes de seguir es buen momento para salir a ver si está lloviendo, revisar el correo o charlar con otros humanos...
+
 ------------
 
+Veamos algunas funciones de probabilidad muy útiles a la hora de tocar: 
+
+# n
+
+n es útil (entre otras cosas) para escoger un sonido de la carpeta rápidamente:
+
+s "alphabet*6" # n "0 3 10 2 7 8"``
+
+podemos combinar n con irand: una funcion que escoge un número rándom entre 0 y el valor que le digamos: 
+
+`jux rev $ s "alphabet*6" # n (irand 20) # cutoff (range 100 5000 sine) `
+
+que tal si ahora incluimos jux rev? y cutoff?
+
+# note
+
+Note cambia el pitch del sample... 
+`
+jux rev $ s "alphabet*6" # note (irand 20) # cutoff (range 100 5000 sine) `
+
+Quizá esto es mas interesante con algo como: 
+`
+jux rev $ s "juno*6" # note (irand 20) # cutoff (range 100 5000 sine) `
 
 
-    --Podemos panearlos:
-s "blip*4"
-          # pan "0 1"
+A proposito, tidal tiene escalas que puedes utilizar: 
+
+# scale
 
 
-    --cutoff es un filtro pasa bajos. Le damos la frecuencia de corte en Hertz.
-s"jvbass*4" # cutoff "4000"
+` s "juno*8" # note (scale "major" "0 .. 7") `
 
-    -- podemos secuenciar los parámetros de los efectos también
-  s "jvbass*4" # cutoff "<70 100 200 300 500 1000 >"
+Tidal tiene un montón de escalas, y puedes añadir más: 
 
-    --Podemos automatizar cambios en los efectos con funciones contínuas (sine, tri, saw)
-s "blip*4" # slow 4 (pan sine)
-
-
-s "blip*4" # cutoff (range 300 1000 $ slow 4 $ sine) # gain "1.5"
-
-
-silence
-
---Tenemos filtros de formantes:
-s "moog*5"  # vowel "u a i e o"
-
-
---cut
-s "moog moog:1" # cut "1"
+> minPent majPent ritusen egyptian kumai hirajoshi iwato chinese indian pelog
+prometheus scriabin gong shang jiao zhi yu whole wholetone augmented augmented2 hexMajor7 hexDorian hexPhrygian hexSus hexMajor6 hexAeolian major ionian dorian phrygian lydian mixolydian aeolian minor locrian harmonicMinor harmonicMajor melodicMinor melodicMinorDesc melodicMajor bartok hindu todi purvimarva bhairav ahirbhairav superLocrian romanianMinor hungarianMinor neapolitanMinor enigmatic spanish leadingWhole lydianMinor neapolitanMajor locrianMajor diminished octatonic diminished2 octatonic2 messiaen1 messiaen2 messiaen3 messiaen4 messiaen5 messiaen6 messiaen7 chromatic bayati hijaz sikah rast saba iraq
 
 -----
 
--- <<<<<<<Performance>>>>>>>>>
+
+Quizá si ya has llegado a este punto y quieres seguir explorando Tidal, utilizar efectos como delay, reverb, utilizar sintetizadore, midi, etc. es momento de instalar tidal: 
+
+https://tidalcycles.org/
 
 
 
 
--- irand escoge un sonido random de la carpeta, rand: numero random entre 0. y 1.
-s "glitch*6 [glitch*3]"  # n (irand 19)
-# pan (rand)
-
--- truco para escoger los sonidos de la carpeta mas rapidamente
- n "0 1 [<3 4 6 7> 1]" # sound "arpy"
-
--- para que suene en cada ciclo:
-
---degradeBy
-degradeBy 0.5 $ sound "moog"
-
---whenmod
-whenmod 8 4 (const silence) $ sound "jungle*4" # n (irand 12)
-
-
-silence
 
 
 
+*Tidalcycles Es Mantenido Y Expandido Por Una Comunidad Muy Activa En Internet. No Dudeis En Contactar A La Comunidad En Caso De Dudas, Problemas O Sugerencias, Pero TambiéN Recuerda Que Hay Que Investigar Antes De Lanzarse A Preguntar, La Respuesta Puede EstáR En AlgúN Lugar.... :)*
 
---TidalCycles es mantenido y expandido por una comunidad muy activa en internet. No dudeis en contactar a la comunidad en caso de dudas, problemas o sugerencias!
--- https://talk.lurk.org/channel/algorithmic-barcelona
--- https://talk.lurk.org/channel/tidal
---el canal de youtube de tidal cycles tiene excelentes tutoriales
+
+
