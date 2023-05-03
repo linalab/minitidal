@@ -1,4 +1,4 @@
-# minitidal
+# minitidal - español
 
 Introducción a TidalCycles de Lina Bautista 
 
