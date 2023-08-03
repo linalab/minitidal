@@ -20,20 +20,20 @@ At the moment we are using SOLO MODE, and MiniTidal
 
 A simple example to get started:
 
-'s "BD"'
+`'s "bd"`
 
 To evaluate press: **Shift + Enter** or the triangle
 
 All samples in a pattern are played in a cycle. See how they are distributed:
 
-'s "BD SN HH BD"'
+`s "bd sn hh bd"`
 
-'s "BD SN HH CP Arpy Drum"'
+`s "bd sn hh cp arpy drum"`
 
-'s "BD SN HH CP Arpy Drum BD Arpy Bass2 Feel Future"'
+`s "bd sn hh cp arpy drum bd arpy bass2 feel future"`
 
 Everything inside quotation marks defines a pattern within a cycle
-s "BD SD BD SN"
+s "bd sd bd sn"
 
 
 We are creating patterns with different SAMPLES
@@ -44,44 +44,43 @@ https://github.com/tidalcycles/Dirt-Samples
 # : 
 
 Switch to the third sound in the folder
-'s "birds:3"'
+`s "birds:3"`
 
 # ~
-To mute: 'silence'
-or comment '--' 
+To mute: `silence`
+or comment `--` 
 
-'s "~ sn:3"'  
-The tilde '~' creates a silence.
+`s "~ sn:3"`  
+The tilde `~` creates a silence.
 
 
 # [ ]
 
 -- More complex patterns: several sounds within one step of a cycle:
-'s "BD Casio Chink [can can can]"'
+`s "BD Casio Chink [can can can]"`
 
 --Square parentheses group.
-'s "[BD BD] BD [SN SN SN] SN SN"'
+`s "[bd bd] bd [sn sn sn] sn sn"`
 
---Polyrhythmia, two patterns at once in the same cycle
-'s "[can can can, casio casio]"
+--Polyrhythm, two patterns at once in the same cycle
+`s "[can can can, casio casio]"
 `
 --As many as we want
-'s "[HH, SN CP SN, ARPY:4 ARPY:2, ~ CP, ~ ~ CASIO]"'
+`s "[hh, sn cp sn, arpy:4 arpy:2, ~ cp, ~ ~ casio]"`
 
 # *
 If we use the same sound we can abbreviate with:
-'s "BD*2"'
+`s "bd*2"`
 
-'s "[clak chin]*2 bd [circus bd:2]/4"'
+`s "[clak chin]*2 bd [circus bd:2]/4"`
 
-'s "[arpy:0 arpy:1 arpy:2 arpy:3]/2"'
+`s "[arpy:0 arpy:1 arpy:2 arpy:3]/2"`
 
 
 # <>
 
 One step per cycle 
-
-'s "BD <ARPY:1 ARPY:2 ARPY:3>"'
+`s "bd <arpy:1 arpy:2 arpy:3>"`
 
 
 ------------
@@ -99,37 +98,39 @@ let's include some features...
 
 We can touch a pattern in reverse with rev
 
-' rev $ s "[[bd sn] cp]"'
+` rev $ s "[[bd sn] cp]"`
 
 # Slow, fast
 
 We can speed up and decelerate such a pattern:
-' slow 2 $ s "[[bd sn] cp]"'
+` slow 2 $ s "[[bd sn] cp]"`
 
-'slow 0.5 $ sound "[[bd sn] cp]"'
+`slow 0.5 $ sound "[[bd sn] cp]"`
+
 
 
 
 We can also use "fast"... The opposite of "slow"
 
-'Fast 2 $ s "[[BD SN] CP]"'
+`fast 2 $ s "[[bd sn] cp]"`
 
 We can make speed patterns too... (and anything!)
 
-'fast "2 1 4" $ s "[[bd sn] cp]"'
+`fast "2 1 4" $ s "[[bd sn] cp]"`
 
 # jux
 Puts the effect only on one channel (very classic to make everything sound better)
 
-'Jux Rev $ fast 2 $ s "[[BD SN] CP]"'
+`jux rev $ fast 2 $ s "[[bd sn] cp]"`
 
 # brak
 Brak redistributes sounds, one normal cycle and the next one plays it in the middle of the cycle and moves it a quarter of a cycle... (Another classic for instant party combined with Jux...)
 
-' brak $ sound "feel feel:3"'
+
+` brak $ sound "feel feel:3"`
 
 Each cycle does this:
-''s "<[feel feel:3][~ feel feel:3 ~]>"''
+``s "<[feel feel:3][~ feel feel:3 ~]>"``
 
 
 # every, sometimes, ?, degradeBy
@@ -137,13 +138,13 @@ Each cycle does this:
 Let's now look at some functions within functions
 
 Playing in reverse only sometimes
-'sometimes (rev) $ s "[[bd sn] cp]"'
+`sometimes (rev) $ s "[[bd sn] cp]"`
 
 We can reverse it every 5 cycles
-'every 5 (rev)$ s "[[bd sn] cp]"'
+`every 5 (rev) $ s "[[bd sn] cp]"`
 
 Combining speeds:
-' every 4 (slow 0.5) $ every 6 (slow 2) $ s "[[bd sn] cp]"'
+` every 4 (slow 0.5) $ every 6 (slow 2) $ s "[[bd sn] cp]"`
 
 
 
@@ -151,21 +152,21 @@ Let's see more useful functions...
 
 # chop
 Cut the samples 
-'chop 8 $ s "newnotes:2 newnotes:3 newnotes:4"'
+`chop 8 $ s "newnotes:2 newnotes:3 newnotes:4"`
 
 We can striate the samples, divide the samples and mix the pieces:
-' striate 8 $ s "newnotes:2 newnotes:3 newnotes:4"'
+`        striate 8 $ s "newnotes:2 newnotes:3 newnotes:4"`
 
 
 
 We can sequence the behavior of the functions too!
-'chop "<2 4 6>" $ s "[jvbass drum:4]"'
+`chop "<2 4 6>" $ s "[jvbass drum:4]"`
 
-' every "<3 4 5>" (fast "2 4 3") $ s"newnotes:2 newnotes:3 newnotes:4"'
+` every "<3 4 5>" (fast "2 4 3") $ s"newnotes:2 newnotes:3 newnotes:4"`
 
-'slow 2 $ chop "<3 10 20 4 2>" $ s "newnotes:2 newnotes:3 newnotes:4"'
+`slow 2 $ chop "<3 10 20 4 2>" $ s "newnotes:2 newnotes:3 newnotes:4"`
 
-'striate' <2 10 2 4>" $ s "newnotes:2" '
+`striate "<2 10 2 4>" $ s "newnotes:2" `
 
 
 
@@ -179,37 +180,36 @@ We can sequence the behavior of the functions too!
 https://tidalcycles.org/docs/reference/audio_effects/
 We can use different effects for our samples and synths:
 
-'s "rave*3" # gain "0.7" # cutoff "200"'
+`s "rave*3" # gain "0.7" # cutoff "200"`
 
 As you can see, you can add different effects, the volume with "gain" and the "cutoff" is a low pass filter, the number changes the frequency.
 
 We can sequence the parameters of the effects as well
 
-'s "rave*3" # gain "0.7 1 1.5" # cutoff "<200 4000 20000>"'
+`s "rave*3" # gain "0.7 1 1.5" # cutoff "<200 4000 20000>"`
 
 We can also pan, add this to the previous pattern:
-         '# bread "0.25 0.5 0.75"'
+       `# pan "0.25 0.5 0.75"`
 
 There is another way to automate effect parameters, with continuous functions (sine, tri, saw):
-
-'s "rave:1*3" # gain "0.7 1 1.5" # cutoff "<200 4000 20000>" # pan sine'
+`s "rave:1*3" # gain "0.7 1 1.5" # cutoff "<200 4000 20000>" # pan sine`
 
 Sin, tri, saw, rand have a predefined range from 0 to 1, if you want to change it you have to defend it:
 
-'s "rave:2*3" # gain "0.7 1 1.5" # cutoff (range 50 10000 sine) # pan rand'
+`s "rave:2*3" # gain "0.7 1 1.5" # cutoff (range 50 10000 sine) # pan rand`
 
 But let's look at some more effects...
 
 A filter of formants, vowel:
-'s "moog*5" # vowel "u a i e o"'
+`s "moog*5"  # vowel "u a i e o"`
 
 
 
 With cut we can cut a sample so that it only lasts one cycle (so that longer samples do not overlap)
 
-'s "moog*5" # vowel "u a i e o" # cut 1'
+`s "moog*5"  # vowel "u a i e o" # cut 1`
 
-'s "rave:1*3" # gain "0.7 1 1.5" # cutoff (range 50 10000 sine) # rand bread # cut 1'
+`s "rave:1*3" # gain "0.7 1 1.5" # cutoff (range 50 10000 sine) # pan rand # cut 1`
 
 
 ------------
@@ -220,11 +220,11 @@ Let's look at some very useful probability functions when it comes to playing:
 
 n is useful (among other things) to choose a sound from the folder quickly:
 
-s "alphabet*6" # n "0 3 10 2 7 8"''
+`s "alphabet*6" # n "0 3 10 2 7 8"`
 
 We can combine n with irand: a function that chooses a ranking number between 0 and the value we say: 
 
-'Jux Rev$ S "Alphabet*6" # N (Irand 20) # Cutoff (Range 100 5000 Sine)'
+`jux rev $ s "alphabet*6" # n (irand 20) # cutoff (range 100 5000 sine) `
 
 What if we now include Jux Rev? and cutoff?
 
@@ -232,11 +232,11 @@ What if we now include Jux Rev? and cutoff?
 
 Note changes the sample pitch... 
 `
-Jux Rev $ s "Alphabet*6" # Note (Irand 20) # Cutoff (Range 100 5000 Sine) '
+jux rev $ s "alphabet*6" # note (irand 20) # cutoff (range 100 5000 sine) `
 
 Perhaps this is more interesting with something like: 
 `
-Jux Rev $ s "Juno*6" # Note (Irand 20) # Cutoff (Range 100 5000 Sine) '
+jux rev $ s "juno*6" # note (irand 20) # cutoff (range 100 5000 sine) `
 
 
 By the way, tidal has scales that you can use: 
@@ -244,7 +244,7 @@ By the way, tidal has scales that you can use:
 # scale
 
 
-' s "juno*8" # note (scale "major" "0 .. 7") '
+` s "juno*8" # note (scale "major" "0 .. 7") `
 
 Tidal has a lot of scales, and you can add more: 
 
